@@ -47,5 +47,12 @@
                   Grid.Column="6" Grid.ColumnSpan="3"
                   Grid.Row="0"
                   Margin=" 10, 20 , 0, 0"/>
+
+        <ListView x:Name="lvProduct"
+                  Grid.Column="0" Grid.ColumnSpan="10"
+                  Grid.Row="1" Grid.RowSpan="7"
+                  Margin=" 10, 10, 10 , 10">
+            
+        </ListView>
     </Grid>
 </Page>
