@@ -8,6 +8,6 @@ namespace Lopyshok.DataBase
 {
     public class bd_connection
     {
-        public static LopushokBDEntities connection = new LopushokBDEntities();
+        public static LopushokEntities connection = new LopushokEntities();
     }
 }

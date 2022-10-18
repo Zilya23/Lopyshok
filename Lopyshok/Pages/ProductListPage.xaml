@@ -49,10 +49,37 @@
                   Margin=" 10, 20 , 0, 0"/>
 
         <ListView x:Name="lvProduct"
+                  ItemsSource="{Binding products}"
                   Grid.Column="0" Grid.ColumnSpan="10"
                   Grid.Row="1" Grid.RowSpan="7"
+                  FontSize="20"
+                  Foreground="Black"
                   Margin=" 10, 10, 10 , 10">
-            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Stretch">
+                                    <Image Source="{Binding Photo}"
+                                           Width="100"
+                                           Height="100"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding ProductTypeId.Name}"/>
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </StackPanel>
+                                         <TextBlock Text="{Binding Id}"/>
+                                         <TextBlock x:Name="tbMaterial"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding MinPrice}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Page>

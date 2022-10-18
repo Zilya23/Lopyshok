@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Lopyshok.DataBase;
 
 namespace Lopyshok.Pages
 {
@@ -20,9 +21,13 @@ namespace Lopyshok.Pages
     /// </summary>
     public partial class ProductListPage : Page
     {
+        List<Product> products { get; set; }
         public ProductListPage()
         {
             InitializeComponent();
+            products = bd_connection.connection.Product.ToList();
+
+            this.DataContext = this;
         }
     }
 }

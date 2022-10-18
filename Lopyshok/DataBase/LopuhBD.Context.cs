@@ -13,10 +13,10 @@ namespace Lopyshok.DataBase
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LopushokBDEntities : DbContext
+    public partial class LopushokEntities : DbContext
     {
-        public LopushokBDEntities()
-            : base("name=LopushokBDEntities")
+        public LopushokEntities()
+            : base("name=LopushokEntities")
         {
         }
     
@@ -30,7 +30,6 @@ namespace Lopyshok.DataBase
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductMaterial> ProductMaterial { get; set; }
         public virtual DbSet<ProductType> ProductType { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Unit> Unit { get; set; }
         public virtual DbSet<Workshop> Workshop { get; set; }
     }
