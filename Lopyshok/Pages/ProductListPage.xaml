@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Lopyshok.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductListPage">
@@ -32,54 +33,105 @@
         </Grid.RowDefinitions>
         
         <TextBox x:Name="tbSearch"
+                 Style="{StaticResource MaterialDesignFilledTextBox}"
+                 materialDesign:HintAssist.Hint="Введите для поиска"  
+                 materialDesign:HintAssist.IsFloating="True"
                  Grid.Row="0"
+                 VerticalAlignment="Center"
                  Grid.Column="0" Grid.ColumnSpan="3"
-                 Margin=" 10, 20 , 0, 0"
-                 Text="Введите для поиска"
+                 Margin=" 10, 20 , 5, 0"
+                 SelectionChanged="tbSearchSelectionChanged"
                  FontSize="20"/>
 
         <ComboBox Name="cbSort"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Сортировка"  
+                  materialDesign:HintAssist.IsFloating="True"
                   Grid.Column="3" Grid.ColumnSpan="3"
                   Grid.Row="0"
-                  Margin=" 10, 20 , 0, 0"/>
+                  VerticalAlignment="Center"
+                  FontSize="20"
+                  Margin=" 10, 20 , 5, 0"/>
 
         <ComboBox Name="cbFiltr"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                  materialDesign:HintAssist.Hint="Фильтрация"  
+                  materialDesign:HintAssist.IsFloating="True"
                   Grid.Column="6" Grid.ColumnSpan="3"
                   Grid.Row="0"
-                  Margin=" 10, 20 , 0, 0"/>
+                  FontSize="20"
+                  SelectedIndex="0"
+                  VerticalAlignment="Center"
+                  SelectionChanged="cbFiltrSelectionChanged"
+                  Margin=" 10, 20 , 5, 0"/>
 
         <ListView x:Name="lvProduct"
                   ItemsSource="{Binding products}"
                   Grid.Column="0" Grid.ColumnSpan="10"
                   Grid.Row="1" Grid.RowSpan="7"
                   FontSize="20"
+                  HorizontalAlignment="Stretch"
                   Foreground="Black"
                   Margin=" 10, 10, 10 , 10">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Stretch">
-                                    <Image Source="{Binding Photo}"
-                                           Width="100"
-                                           Height="100"/>
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding ProductTypeId.Name}"/>
-                                            <TextBlock Text="{Binding Name}"/>
-                                        </StackPanel>
-                                         <TextBlock Text="{Binding Id}"/>
-                                         <TextBlock x:Name="tbMaterial"/>
-                                    </StackPanel>
-                                    <TextBlock Text="{Binding MinPrice}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="5"
+                        BorderThickness="2"
+                        BorderBrush="Black">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Width="150" 
+                                   Height="150"
+                                   Margin="10"
+                                   Grid.Column="0">
+                                <Image.Source>
+                                    <Binding Path="Image">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>/Img/picture.png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+                            <StackPanel Orientation="Vertical"
+                                                Margin="10, 0, 0, 0"
+                                                    Grid.Column="1">
+                                <TextBlock>
+                                    <Run Text="{Binding ProductType.Name}"/>
+                                    <Run Text=" | "/>
+                                    <Run Text="{Binding Name}"/>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Id}"/>
+                                <TextBlock Text="Материалы: "/>
+
+                                <ListView x:Name="lvMaterial" 
+                                    ItemsSource="{Binding ProductMaterial}"
+                                    FontSize="16"
+                                    Foreground="Black">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Material.Name}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+
+                            <TextBlock Grid.Column="2"
+                                       Margin="30, 0, 10, 0"
+                                       HorizontalAlignment="Right">
+                                <Run Text="{Binding MinPrice}"/>
+                                <Run Text=" руб."/>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </Page>
