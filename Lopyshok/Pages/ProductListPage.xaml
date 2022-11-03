@@ -44,6 +44,8 @@
                  FontSize="20"/>
 
         <ComboBox Name="cbSort"
+                  SelectedIndex="0"
+                  SelectionChanged="cbSortSelectionChanged"
                   Style="{StaticResource MaterialDesignOutlinedComboBox}"
                   materialDesign:HintAssist.Hint="Сортировка"  
                   materialDesign:HintAssist.IsFloating="True"

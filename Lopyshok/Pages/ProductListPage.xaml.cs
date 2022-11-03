@@ -23,6 +23,7 @@ namespace Lopyshok.Pages
     {
         public List<Product> products { get; set; }
         public List<ProductType> types { get; set; }
+        public List<Sorting> sortings { get; set; }
         public ProductListPage()
         {
             InitializeComponent();
@@ -32,6 +33,20 @@ namespace Lopyshok.Pages
             types.Insert(0, new ProductType { Id = 0, Name = "Все типы" });
             cbFiltr.ItemsSource = types;
             cbFiltr.DisplayMemberPath = "Name";
+
+            sortings = new List<Sorting>()
+            { 
+                new Sorting() {Id=0, Name ="Пусто"},
+                new Sorting() {Id=1, Name ="Минимальная стоимость по убыванию"},
+                new Sorting() {Id=2, Name ="Минимальная стоимость по возрастанию"},
+                new Sorting() {Id=3, Name ="Наименование по убыванию"},
+                new Sorting() {Id=4, Name ="Наименование по возрастанию"},
+                new Sorting() {Id=5, Name ="Номер цеха по убыванию"},
+                new Sorting() {Id=6, Name ="Номер цеха по возрастанию"}
+            };
+
+            cbSort.ItemsSource = sortings;
+            cbSort.DisplayMemberPath = "Name";
 
             this.DataContext = this;
         }
@@ -54,7 +69,43 @@ namespace Lopyshok.Pages
                 }
             }
 
+            if(cbSort.SelectedItem != null)
+            {
+                var selectSort = cbSort.SelectedItem as Sorting;
+
+                if(selectSort.Id == 1)
+                {
+                    filterProduct = filterProduct.OrderByDescending(x => x.MinPrice).ToList();
+                }
+                else if(selectSort.Id == 2)
+                {
+                    filterProduct = filterProduct.OrderBy(x => x.MinPrice).ToList();
+                }
+                else if(selectSort.Id == 3)
+                {
+                    filterProduct = filterProduct.OrderByDescending(x => x.Name).ToList();
+                }
+                else if (selectSort.Id == 4)
+                {
+                    filterProduct = filterProduct.OrderBy(x => x.Name).ToList();
+                }
+                else if (selectSort.Id == 5)
+                {
+                    filterProduct = filterProduct.OrderBy(x => x.WorkshopId).ToList();
+                }
+                else if (selectSort.Id == 6)
+                {
+                    filterProduct = filterProduct.OrderByDescending(x => x.WorkshopId).ToList();
+                }
+            }
+
             lvProduct.ItemsSource = filterProduct;
+        }
+
+        public class Sorting
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
         }
 
         private void tbSearchSelectionChanged(object sender, RoutedEventArgs e)
@@ -63,6 +114,11 @@ namespace Lopyshok.Pages
         }
 
         private void cbFiltrSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbSortSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Filter();
         }
