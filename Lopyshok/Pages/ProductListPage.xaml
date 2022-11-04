@@ -67,14 +67,21 @@
                   SelectionChanged="cbFiltrSelectionChanged"
                   Margin=" 10, 20 , 5, 0"/>
 
+        <Button x:Name="btnAddProd"
+                Content="Добавить продукт"
+                Grid.Column="7" Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Click="btnAddProdClick"/>
+
         <ListView x:Name="lvProduct"
                   ItemsSource="{Binding products}"
                   Grid.Column="0" Grid.ColumnSpan="10"
-                  Grid.Row="1" Grid.RowSpan="7"
+                  Grid.Row="2" Grid.RowSpan="7"
                   FontSize="20"
                   HorizontalAlignment="Stretch"
                   Foreground="Black"
-                  Margin=" 10, 10, 10 , 10">
+                  Margin=" 10, 10, 10 , 10"
+                  SelectionChanged="lvProductSelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="5"

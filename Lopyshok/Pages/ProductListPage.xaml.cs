@@ -122,5 +122,19 @@ namespace Lopyshok.Pages
         {
             Filter();
         }
+
+        private void btnAddProdClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddProdPage(null));
+        }
+
+        private void lvProductSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(lvProduct.SelectedItem != null)
+            {
+                var selectProd = lvProduct.SelectedItem as Product;
+                NavigationService.Navigate(new AddProdPage(selectProd));
+            }
+        }
     }
 }
