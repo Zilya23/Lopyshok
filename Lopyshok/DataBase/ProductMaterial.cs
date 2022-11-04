@@ -14,9 +14,9 @@ namespace Lopyshok.DataBase
     
     public partial class ProductMaterial
     {
-        public int ProductId { get; set; }
-        public int MaterialId { get; set; }
-        public Nullable<int> MaterialQuantity { get; set; }
+        public int IDProduct { get; set; }
+        public int IDMaterial { get; set; }
+        public Nullable<int> CountMaterial { get; set; }
     
         public virtual Material Material { get; set; }
         public virtual Product Product { get; set; }

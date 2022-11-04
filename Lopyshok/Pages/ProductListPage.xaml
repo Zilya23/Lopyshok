@@ -99,7 +99,7 @@
                                    Margin="10"
                                    Grid.Column="0">
                                 <Image.Source>
-                                    <Binding Path="Image">
+                                    <Binding Path="Photo">
                                         <Binding.TargetNullValue>
                                             <ImageSource>/Img/picture.png</ImageSource>
                                         </Binding.TargetNullValue>

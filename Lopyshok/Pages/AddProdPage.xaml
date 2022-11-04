@@ -40,7 +40,7 @@
                 Click="btnBackClick"/>
 
         <TextBox x:Name="tbArticl"
-                 Text="{Binding selectProduct.Id}"
+                 Text="{Binding selectProduct.ID}"
                  Style="{StaticResource MaterialDesignFilledTextBox}"
                  materialDesign:HintAssist.Hint="Артикул"  
                  materialDesign:HintAssist.IsFloating="True"
@@ -62,7 +62,7 @@
                  FontSize="20"/>
 
         <TextBox x:Name="tbPeopleCount"
-                 Text="{Binding selectProduct.ManForProduction}"
+                 Text="{Binding selectProduct.PeopleForProduction}"
                  Style="{StaticResource MaterialDesignFilledTextBox}"
                  materialDesign:HintAssist.Hint="Количество человек"  
                  materialDesign:HintAssist.IsFloating="True"
@@ -73,6 +73,7 @@
                  FontSize="20"/>
 
         <TextBox x:Name="tbDescription"
+                 Text="{Binding selectProduct.Description}"
                  Style="{StaticResource MaterialDesignFilledTextBox}"
                  materialDesign:HintAssist.Hint="Описание"  
                  materialDesign:HintAssist.IsFloating="True"
@@ -120,7 +121,7 @@
                                    VerticalAlignment="Center">
                             <TextBox VerticalContentAlignment="Bottom"
                                      Height="30"/>
-                                <Run Text="{Binding MaterialQuantity}"/>
+                                <Run Text="{Binding CountMaterial}"/>
                                 <Run Text="шт"/>
                         </TextBlock>
                     </StackPanel>
@@ -143,7 +144,7 @@
                     Grid.Row="5" Grid.RowSpan="4"
                     Grid.Column="5" Grid.ColumnSpan="3" >
             <Image x:Name="imgPhoto"
-                   Source="{Binding selectProduct.Image}"
+                   Source="{Binding selectProduct.Photo}"
                    Width="300"
                    Height="150"/>
             <Button x:Name="btnAddPhoto"

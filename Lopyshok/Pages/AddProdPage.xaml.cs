@@ -63,7 +63,7 @@ namespace Lopyshok.Pages
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
             int newArticle = Convert.ToInt32(tbArticl.Text.Trim());
-            var uniqAricle = bd_connection.connection.Product.FirstOrDefault(x => x.Id == newArticle);
+            var uniqAricle = bd_connection.connection.Product.FirstOrDefault(x => x.ID == newArticle);
             if(uniqAricle == selectProduct || uniqAricle == null)
             {
                 try
@@ -99,7 +99,7 @@ namespace Lopyshok.Pages
             if(cbMaterial.SelectedItem != null)
             {
                 var selectMaterial = cbMaterial.SelectedItem as Material;
-                var uniqMaterial = bd_connection.connection.ProductMaterial.FirstOrDefault(x => x.Material.Id == selectMaterial.Id && x.Product.Id == selectProduct.Id);
+                var uniqMaterial = bd_connection.connection.ProductMaterial.FirstOrDefault(x => x.Material.ID == selectMaterial.ID && x.Product.ID == selectProduct.ID);
                 if(uniqMaterial == null)
                 {
                     ProductMaterial productMaterial = new ProductMaterial()
@@ -141,7 +141,7 @@ namespace Lopyshok.Pages
             if (fileDialog.ShowDialog().Value)
             {
                 var image = File.ReadAllBytes(fileDialog.FileName);
-                selectProduct.Image = image;
+                selectProduct.Photo = image;
 
                 imgPhoto.Source = new BitmapImage(new Uri(fileDialog.FileName));
             }
@@ -152,7 +152,7 @@ namespace Lopyshok.Pages
             var messageDelete = MessageBox.Show("Вы хотите удалить фото?", "Внимание", MessageBoxButton.YesNoCancel);
             if (messageDelete == MessageBoxResult.Yes)
             {
-                selectProduct.Image = null;
+                selectProduct.Photo = null;
                 imgPhoto.Source = null;
             }
         }

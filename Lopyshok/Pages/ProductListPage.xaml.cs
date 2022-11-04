@@ -30,7 +30,7 @@ namespace Lopyshok.Pages
             products = bd_connection.connection.Product.ToList();
 
             types = bd_connection.connection.ProductType.ToList();
-            types.Insert(0, new ProductType { Id = 0, Name = "Все типы" });
+            types.Insert(0, new ProductType { ID = 0, Name = "Все типы" });
             cbFiltr.ItemsSource = types;
             cbFiltr.DisplayMemberPath = "Name";
 
@@ -63,9 +63,9 @@ namespace Lopyshok.Pages
             if(cbFiltr.SelectedItem != null)
             {
                 var selectFiltr = cbFiltr.SelectedItem as ProductType;
-                if (selectFiltr.Id != 0)
+                if (selectFiltr.ID != 0)
                 {
-                    filterProduct = filterProduct.Where(x => x.ProductType.Id == selectFiltr.Id).ToList();
+                    filterProduct = filterProduct.Where(x => x.ProductType.ID == selectFiltr.ID).ToList();
                 }
             }
 
@@ -91,15 +91,16 @@ namespace Lopyshok.Pages
                 }
                 else if (selectSort.Id == 5)
                 {
-                    filterProduct = filterProduct.OrderBy(x => x.WorkshopId).ToList();
+                    filterProduct = filterProduct.OrderBy(x => x.IDWorkshop).ToList();
                 }
                 else if (selectSort.Id == 6)
                 {
-                    filterProduct = filterProduct.OrderByDescending(x => x.WorkshopId).ToList();
+                    filterProduct = filterProduct.OrderByDescending(x => x.IDWorkshop).ToList();
                 }
             }
 
             lvProduct.ItemsSource = filterProduct;
+            lvProduct.Items.Refresh();
         }
 
         public class Sorting

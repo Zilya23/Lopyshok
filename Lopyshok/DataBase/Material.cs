@@ -20,12 +20,12 @@ namespace Lopyshok.DataBase
             this.ProductMaterial = new HashSet<ProductMaterial>();
         }
     
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-        public Nullable<int> MaterialTypeId { get; set; }
-        public Nullable<int> QuantityInPackage { get; set; }
-        public Nullable<int> UnitId { get; set; }
-        public Nullable<int> QuantityInStock { get; set; }
+        public Nullable<int> IDMaterialType { get; set; }
+        public Nullable<int> CountInPackage { get; set; }
+        public Nullable<int> IDUnit { get; set; }
+        public Nullable<int> CountInStock { get; set; }
         public Nullable<int> MinRemainder { get; set; }
         public Nullable<decimal> Price { get; set; }
     

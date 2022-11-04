@@ -30,6 +30,7 @@ namespace Lopyshok.DataBase
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductMaterial> ProductMaterial { get; set; }
         public virtual DbSet<ProductType> ProductType { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Unit> Unit { get; set; }
         public virtual DbSet<Workshop> Workshop { get; set; }
     }
